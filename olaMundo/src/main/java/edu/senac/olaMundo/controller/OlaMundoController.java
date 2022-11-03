@@ -19,24 +19,14 @@ import edu.senac.olaMundo.dto.OlaMundoResponse;
 
 
 public class OlaMundoController {
-	private static final String MENSAGEM_OLA_MUNDO = "Olá mundo para vc %s. Tudo bem contigo?";
+	private static final String MENSAGEM = "Olá mundo";
 
 	@GetMapping(value = "/basico/get/olaMundo", produces = { "application/json" })
 	public ResponseEntity<OlaMundoResponse> olaMundo(@RequestParam(value = "nome", required = false) String nome) {
 		System.out.println("/basico/get/olaMundo");
 
 		OlaMundoResponse olaMundoResponse = new OlaMundoResponse();
-		olaMundoResponse.setMensagem(String.format(MENSAGEM_OLA_MUNDO, nome));
-
-		return ResponseEntity.ok(olaMundoResponse);
-	}
-
-	@GetMapping(value = "/basico/get/olaMundo/{nome}", produces = { "application/json" })
-	public ResponseEntity<OlaMundoResponse> olaMundoPath(@PathVariable("nome") String nome) {
-		System.out.println("/basico/get/olaMundo/{nome}");
-
-		OlaMundoResponse olaMundoResponse = new OlaMundoResponse();
-		olaMundoResponse.setMensagem(String.format(MENSAGEM_OLA_MUNDO, nome));
+		olaMundoResponse.setMensagem(String.format(MENSAGEM, nome));
 
 		return ResponseEntity.ok(olaMundoResponse);
 	}
@@ -46,7 +36,7 @@ public class OlaMundoController {
 		System.out.println("/basico/post/olaMundo");
 
 		OlaMundoResponse olaMundoResponse = new OlaMundoResponse();
-		olaMundoResponse.setMensagem(String.format(MENSAGEM_OLA_MUNDO, body.getNome()));
+		olaMundoResponse.setMensagem(String.format(MENSAGEM, body.getNome()));
 
 		return ResponseEntity.ok(olaMundoResponse);
 	}
@@ -56,18 +46,17 @@ public class OlaMundoController {
 		System.out.println("/basico/put/olaMundo");
 
 		OlaMundoResponse olaMundoResponse = new OlaMundoResponse();
-		olaMundoResponse.setMensagem(String.format(MENSAGEM_OLA_MUNDO, body.getNome()));
+		olaMundoResponse.setMensagem(String.format(MENSAGEM, body.getNome()));
 
 		return ResponseEntity.ok(olaMundoResponse);
 	}
 
-	@DeleteMapping(value = "/basico/delete/olaMundo", produces = { "application/json" }, consumes = {
-			"application/json" })
+	@DeleteMapping(value = "/basico/delete/olaMundo", produces = { "application/json" }, consumes = {"application/json" })
 	public ResponseEntity<OlaMundoResponse> olaMundoDelete(@RequestBody OlaMundoRequest body) {
 		System.out.println("/basico/delete/olaMundo");
 
 		OlaMundoResponse olaMundoResponse = new OlaMundoResponse();
-		olaMundoResponse.setMensagem(String.format(MENSAGEM_OLA_MUNDO, body.getNome()));
+		olaMundoResponse.setMensagem(String.format(MENSAGEM, body.getNome()));
 
 		return ResponseEntity.ok(olaMundoResponse);
 	}

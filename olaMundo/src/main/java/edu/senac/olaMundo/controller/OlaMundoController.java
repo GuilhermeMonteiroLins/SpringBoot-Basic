@@ -19,11 +19,21 @@ import edu.senac.olaMundo.dto.OlaMundoResponse;
 
 
 public class OlaMundoController {
-	private static final String MENSAGEM = "Olá mundo";
+	private static final String MENSAGEM= "Olá mundo";
 
 	@GetMapping(value = "/basico/get/olaMundo", produces = { "application/json" })
 	public ResponseEntity<OlaMundoResponse> olaMundo(@RequestParam(value = "nome", required = false) String nome) {
 		System.out.println("/basico/get/olaMundo");
+
+		OlaMundoResponse olaMundoResponse = new OlaMundoResponse();
+		olaMundoResponse.setMensagem(String.format(MENSAGEM, nome));
+
+		return ResponseEntity.ok(olaMundoResponse);
+	}
+
+	@GetMapping(value = "/basico/get/olaMundo/{nome}", produces = { "application/json" })
+	public ResponseEntity<OlaMundoResponse> olaMundoPath(@PathVariable("nome") String nome) {
+		System.out.println("/basico/get/olaMundo/{nome}");
 
 		OlaMundoResponse olaMundoResponse = new OlaMundoResponse();
 		olaMundoResponse.setMensagem(String.format(MENSAGEM, nome));

@@ -19,7 +19,7 @@ import edu.senac.olaMundo.dto.OlaMundoResponse;
 
 
 public class OlaMundoController {
-	private static final String MENSAGEM= "Olá mundo";
+	private static final String MENSAGEM = "Olá mundo, %s";
 
 	@GetMapping(value = "/basico/get/olaMundo", produces = { "application/json" })
 	public ResponseEntity<OlaMundoResponse> olaMundo(@RequestParam(value = "nome", required = false) String nome) {
